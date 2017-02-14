@@ -1,0 +1,23 @@
+{
+  "name": "loki-react-native-asyncstorage-adapter",
+  "version": "1.0.0",
+  "description": "This is a adapter for Lokijs on react-native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiasaichao/loki-react-native-asyncstorage-adapter.git"
+  },
+  "keywords": [
+    "lokijs",
+    "react-native"
+  ],
+  "author": "jiasaichao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiasaichao/loki-react-native-asyncstorage-adapter/issues"
+  },
+  "homepage": "https://github.com/jiasaichao/loki-react-native-asyncstorage-adapter#readme"
+}
