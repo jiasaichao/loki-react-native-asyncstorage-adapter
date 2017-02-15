@@ -1,16 +1,32 @@
 import { AsyncStorage } from 'react-native';
 const TAG = "[LokieactNativeAsyncStorageAdapter]";
 class LokieactNativeAsyncStorageAdapter {
-    constructor(options={}) {
+    constructor(options = {}) {
         this.options = options;
-        if(!this.options.keyName){
-            this.options.keyName='lokijs'
-        }
+    }
+    loadDatabase(dbname, callback) {
+        //console.log(TAG, "loading database");
+        AsyncStorage.getItem(
+            dbname,
+            (error, result) => {
+                if (error) {
+                    console.error(TAG, "loadDatabase", error);
+                } else {
+                    if (result == null) {
+                        //console.warn(TAG, "couldn't find database");
+                        callback(null);
+                    }
+                    else {
+                        callback(result);
+                    }
+                }
+            }
+        );
     }
     saveDatabase(dbname, dbstring, callback) {
         //console.log(TAG, "saving database");
         AsyncStorage.setItem(
-            this.options.keyName,
+            dbname,
             dbstring,
             (error) => {
                 if (error) {
@@ -22,29 +38,9 @@ class LokieactNativeAsyncStorageAdapter {
         );
     }
 
-    loadDatabase(dbname, callback) {
-        //console.log(TAG, "loading database");
-        AsyncStorage.getItem(
-            this.options.keyName,
-            (error, result) => {
-                if (error) {
-                    console.error(TAG, "loadDatabase", error);
-                } else {
-                    if (result.length === 0) {
-                        //console.warn(TAG, "couldn't find database");
-                        callback(null);
-                    }
-                    else {
-                        callback(contents);
-                    }
-                }
-            }
-        );
-    }
-
     deleteDatabase(dbname, callback) {
         AsyncStorage.removeItem(
-            this.options.keyName,
+            dbname,
             (error) => {
                 if (!error) {
                     callback();
